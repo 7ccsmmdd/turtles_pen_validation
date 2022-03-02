@@ -1,0 +1,8 @@
+/* XPECT_SETUP uk.ac.kcl.inf.mdd8b.tests.pen_validator.PenValidatorTest  END_SETUP */
+turn right by 1 degrees
+forward(10)
+forward(10)
+turn left by 360 degrees
+
+// XPECT warnings --> "This program may not end with the pen down"
+pen up
