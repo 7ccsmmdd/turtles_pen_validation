@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>uk.ac.kcl.inf.mdd8a.turtles</groupId>
+	<groupId>uk.ac.kcl.inf.mdd8b.turtles</groupId>
 	<version>1.0.0-SNAPSHOT</version>
-	<artifactId>uk.ac.kcl.inf.mdd8a.turtles.parent</artifactId>
+	<artifactId>uk.ac.kcl.inf.mdd8b.turtles.parent</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -21,13 +21,13 @@
 		<additionalTestArguments></additionalTestArguments>
 	</properties>
 	<modules>
-		<module>uk.ac.kcl.inf.mdd8a.turtles</module>
-		<module>uk.ac.kcl.inf.mdd8a.turtles.ide</module>
-		<module>uk.ac.kcl.inf.mdd8a.turtles.target</module>
-		<module>uk.ac.kcl.inf.mdd8a.turtles.tests</module>
-		<module>uk.ac.kcl.inf.mdd8a.turtles.ui</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles.ide</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles.target</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles.tests</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles.ui</module>
 <!-- removed for automatic builds		
-		<module>uk.ac.kcl.inf.mdd8a.turtles.ui.tests</module>
+		<module>uk.ac.kcl.inf.mdd8b.turtles.ui.tests</module>
 -->
 	</modules>
 	<dependencyManagement>
@@ -56,8 +56,8 @@
 				<configuration>
 					<target>
 						<artifact>
-							<groupId>uk.ac.kcl.inf.mdd8a.turtles</groupId>
-							<artifactId>uk.ac.kcl.inf.mdd8a.turtles.target</artifactId>
+							<groupId>uk.ac.kcl.inf.mdd8b.turtles</groupId>
+							<artifactId>uk.ac.kcl.inf.mdd8b.turtles.target</artifactId>
 							<version>${project.version}</version>
 						</artifact>
 					</target>

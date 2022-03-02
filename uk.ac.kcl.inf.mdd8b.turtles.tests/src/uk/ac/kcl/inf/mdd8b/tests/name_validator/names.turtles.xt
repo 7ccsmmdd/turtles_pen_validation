@@ -1,0 +1,8 @@
+/* XPECT_SETUP uk.ac.kcl.inf.mdd8b.tests.name_validator.NameValidatorTest  END_SETUP */
+turn right by 1 degrees
+forward(10)
+forward(10)
+turn left by 360 degrees
+
+//  XPECT warnings --> "Variable name should start with a lowercase character" at "VarWithWrongName" 
+var VarWithWrongName = 7
