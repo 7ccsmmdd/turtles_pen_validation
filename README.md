@@ -1,14 +1,19 @@
-## A name validator for turtle programs
+## A simple validator checking the pen state of a turtle programs
 
-Write a simple validator for your turtle program language, that issues a warning for every variable declaration where the variable name starts with an upper case character.
+Write a validator that issues a warning if it is possible that at the end of a turtle program the pen may not be down (this may indicate a program that hasn't drawn anything).
 
 For example, 
 
 ```
-var VarWithWrongName = 7
+turn right by 1 degrees
+forward(10)
+forward(10)
+turn left by 360 degrees
+
+pen up
 ```
 
-should add a yellow wriggly line under the word `VarWithWrongName` with the warning message `Variable name should start with a lowercase character`.
+should add a yellow wriggly line under the statements (will typically be shown under the first statement) with the warning message `This program may not end with the pen down`.
 
 As always, you may have to generate xtext artifacts after your initial download of the code.
 
