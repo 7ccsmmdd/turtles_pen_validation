@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: uk.ac.kcl.inf.mdd8a.turtles
+Bundle-ManifestVersion: 2
+Bundle-Name: uk.ac.kcl.inf.mdd8a.turtles
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: uk.ac.kcl.inf.mdd8a.turtles; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: uk.ac.kcl.inf.mdd8a.services,
+ uk.ac.kcl.inf.mdd8a.parser.antlr,
+ uk.ac.kcl.inf.mdd8a.serializer,
+ uk.ac.kcl.inf.mdd8a.validation,
+ uk.ac.kcl.inf.mdd8a.turtles.impl,
+ uk.ac.kcl.inf.mdd8a.turtles.util,
+ uk.ac.kcl.inf.mdd8a.parser.antlr.internal,
+ uk.ac.kcl.inf.mdd8a,
+ uk.ac.kcl.inf.mdd8a.turtles,
+ uk.ac.kcl.inf.mdd8a.scoping,
+ uk.ac.kcl.inf.mdd8a.generator
+Import-Package: org.apache.log4j

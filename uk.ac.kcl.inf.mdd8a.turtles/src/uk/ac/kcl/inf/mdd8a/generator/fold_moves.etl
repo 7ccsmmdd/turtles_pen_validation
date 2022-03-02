@@ -1,0 +1,121 @@
+rule CopyProgram 
+	transform s : Source!TurtleProgram
+	to t : Target!TurtleProgram {
+	
+	t.statements ::= s.statements;
+}
+
+rule CopyPenMoveStatement 
+	transform s : Source!PenMoveStatement
+	to t : Target!PenMoveStatement {
+	t.state = s.state;
+}
+
+rule CopyVariableDeclaration 
+	transform s : Source!VariableDeclaration
+	to t : Target!VariableDeclaration {
+	t.name = s.name;
+	t.value = s.value;
+}
+
+rule CopyLoopStatement 
+	transform s : Source!LoopStatement
+	to t : Target!LoopStatement {
+	t.count ::= s.count;
+	t.statements ::= s.statements;
+}
+
+rule CopyMoveStatement 
+	transform s : Source!MoveStatement
+	to t : Target!MoveStatement {
+	
+	guard:
+	  // Check previous element is not also a MoveStatement 
+	  (s.eContainer().statements.indexOf(s) = 0) or
+	  (not (s.eContainer().statements.get(s.eContainer().statements.indexOf(s) - 1).isTypeOf(Source!MoveStatement)))
+
+	("Transforming move statement: " + s.command + " (" + s.steps + ")").println();
+
+	t.command = s.command;
+
+	var container = s.eContainer();
+	var cmdIndex = container.statements.indexOf(s);
+	var isLast = (cmdIndex = container.statements.size() - 1);
+	
+	if (not isLast) {
+		var nextStatement = container.statements.get(cmdIndex + 1);
+		
+		if (nextStatement.isTypeOf(Source!MoveStatement)) {
+			t.steps = new Target!Addition;
+			t.steps.left ::= s.steps;
+			
+			while ((not isLast) and nextStatement.isTypeOf(Source!MoveStatement)) {
+				if (nextStatement.command = s.command) {
+					"Adding a plus".println();
+					t.steps.operator.add("+");
+				} else {
+					"Adding a minus".println();
+					t.steps.operator.add("-");
+				}
+				t.steps.right.add(nextStatement.steps.equivalent());
+
+				cmdIndex += 1;
+				isLast = (cmdIndex = container.statements.size() - 1);
+				if (not isLast) {
+					nextStatement = container.statements.get(container.statements.indexOf(nextStatement) + 1);
+				}
+			}
+			("Transformed to: " + t.command + " (" + t.steps + ")").println();
+	
+		} else {
+			t.steps ::= s.steps;
+			("Transformed to: " + t.command + " (" + t.steps + ")").println();
+		}
+	} else {
+		t.steps ::= s.steps;
+		("Transformed to: " + t.command + " (" + t.steps + ")").println();
+	}
+}
+
+rule CopyTurnStatement 
+	transform s : Source!TurnStatement
+	to t : Target!TurnStatement {
+	t.command = s.command;
+	t.degrees ::= s.degrees;
+}
+
+rule CopyIntLiteral 
+	transform s : Source!IntLiteral
+	to t : Target!IntLiteral {
+	t.val = s.val;
+}
+
+rule CopyRealLiteral
+	transform s : Source!RealLiteral
+	to t : Target!RealLiteral {
+	t.val = s.val;
+}
+
+rule CopyIntVarExpression 
+	transform s : Source!IntVarExpression
+	to t : Target!IntVarExpression {
+	t.`var` ::= s.`var`;
+}
+
+rule CopyAddition
+	transform s : Source!Addition
+	to t : Target!Addition {
+	
+	t.left ::= s.left;
+	t.operator = s.operator;
+	t.right ::= s.right;
+}
+
+rule CopyMultiplication
+	transform s : Source!Multiplication
+	to t : Target!Multiplication {
+	
+	t.left ::= s.left;
+	t.operator = s.operator;
+	t.right ::= s.right;
+}
