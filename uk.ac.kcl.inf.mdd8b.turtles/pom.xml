@@ -8,6 +8,11 @@
 	</parent>
 	<artifactId>uk.ac.kcl.inf.mdd8b.turtles</artifactId>
 	<packaging>eclipse-plugin</packaging>
+	<properties>
+		<required-java-version>11</required-java-version>
+		<required-maven-version>3.6.3</required-maven-version>
+		<xtextVersion>2.31.0</xtextVersion>
+	</properties>
 
 	<build>
 		<plugins>

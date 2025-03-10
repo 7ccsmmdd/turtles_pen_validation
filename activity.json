@@ -1,0 +1,136 @@
+{
+    "activities": [
+        {
+            "id": "activity-xtext-turtles",
+            "title": "Defining the language",
+            "icon": "xtext",
+
+            "tools": ["https://mdenet-ep.sites.er.kcl.ac.uk/tools/xtext/xtext_tool.json",
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/emf/emf_tool.json",
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/emfatic/emfatic_tool.json",
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/epsilon/tools"],
+
+            "panels": [
+                {
+                    "id": "panel-xtext",
+                    "name": "Xtext Grammar -- do not edit this this time, just generate your Xtext editor",
+                    "ref": "xtext-grammar",
+                    "file": "uk.ac.kcl.inf.mdd8b.turtles/src/uk/ac/kcl/inf/mdd8b/Turtles.xtext"
+                },
+                {
+                    "id": "panel-xtext-scopeprovider",
+                    "name": "Scope Provider",
+                    "ref": "xtext-scopeprovider",
+                    "file": "uk.ac.kcl.inf.mdd8b.turtles/src/uk/ac/kcl/inf/mdd8b/scoping/TurtlesScopeProvider.xtend"
+                },
+                {
+                    "id": "panel-xtext-validator",
+                    "name": "Model Validator",
+                    "ref": "xtext-validator",
+                    "file": "uk.ac.kcl.inf.mdd8b.turtles/src/uk/ac/kcl/inf/mdd8b/validation/TurtlesValidator.xtend",
+                    "buttons": [
+                        {
+                            "id": "generate-xtext",
+                            "hint": "Generate Xtext editor with this validator",
+                            "icon": "run",
+                            "actionfunction": "function-xtext"
+                        },
+                        {
+                            "ref": "help-button"
+                        }
+                    ],
+                    "editorPanel": "panel-turtles",
+                    "editorActivity": "activity-turtles-editor"
+                },
+                {
+                    "id": "panel-console",
+                    "name": "Console",
+                    "ref": "console"
+                },
+                {
+                    "id": "panel-diagram",
+                    "name": "Language metamodel",
+                    "ref": "emfgraph",
+                    "buttons": [
+                        {
+                            "id": "button-generate-metamodel-diagram",
+                            "actionfunction": "function-ecoretodiagram",
+                            "hint": "Show metamodel diagram",
+                            "icon": "diagram-generate"
+                        }
+                    ]
+                },
+                {
+                    "id": "hidden-panel-mm",
+                    "name": "Metamodel",
+                    "ref": "ecore",
+                    "file": "uk.ac.kcl.inf.mdd8b.turtles/model/generated/Turtles.ecore"
+                }
+            ],
+
+            "layout": {
+                    "area": [
+                        ["panel-xtext-validator", "panel-diagram"],
+                        ["panel-console"]
+                    ]
+
+                },
+
+            "actions": [
+                {
+                    "source": "panel-xtext-validator",
+                    "sourceButton": "generate-xtext",
+
+                    "parameters": {
+                        "languageName": "uk.ac.kcl.inf.mdd8b.turtles.Turtles",
+                        "baseName": "uk.ac.kcl.inf.mdd8b.turtles",
+                        "extension": "turtles",
+                        "grammar": "panel-xtext",
+                        "scopeprovider": "panel-xtext-scopeprovider",
+                        "validator": "panel-xtext-validator"
+                    },
+
+                    "output": "panel-console"
+                },
+                {
+                    "source": "panel-diagram",
+                    "sourceButton": "button-generate-metamodel-diagram",
+
+                    "parameters": {
+                        "language": "ecore",
+                        "emfatic": "hidden-panel-mm"
+                    },
+
+                    "output": "panel-diagram"
+                }
+            ]
+        },
+        {
+            "id": "activity-turtles-editor",
+            "title": "Turtles Editor",
+            "icon": "xtext",
+
+            "tools": ["{{ID-panel-turtles}}/editor_tool.json", 
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/emf/emf_tool.json",
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/emfatic/emfatic_tool.json",
+                      "https://mdenet-ep.sites.er.kcl.ac.uk/tools/epsilon/tools"],
+
+            "panels": [
+                {
+                    "id": "panel-turtles",
+                    "name": "Try out your language here",
+                    "ref": "xtext-editor",
+                    "file": "example/test.turtles",
+                    "extension": "turtles",
+                    "buttons": []
+                }
+            ],
+
+            "layout": {
+                "area": [["panel-turtles"]]
+            },
+
+            "actions": []
+        }
+    ]
+} 

@@ -1,0 +1,5 @@
+// Expect a warning below
+var BadlyNamedVariable = 9
+
+// Expect no warning below
+var goodVariableName = 8
