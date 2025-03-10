@@ -14,8 +14,8 @@ Require-Bundle: uk.ac.kcl.inf.mdd8b.turtles.ui,
  org.eclipse.xtext.ui.testing,
  org.eclipse.ui.workbench;resolution:=optional,
  org.eclipse.xtext.xbase.ui.testing,
- org.aopalliance;bundle-version="1.0.0",
- io.github.classgraph;bundle-version="4.8.149",
+ org.aopalliance,
+ io.github.classgraph.classgraph,
  junit-jupiter-api;bundle-version="5.10.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: uk.ac.kcl.inf.mdd8b.ui.tests;x-internal=true
